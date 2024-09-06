@@ -164,4 +164,5 @@ sk<-(Q1-2*Q2+Q3)/(Q3-Q1);sk
 #Q 8 Box plot of x
 boxplot(x)
 #Q 9 Histogram of x. Add a fitted curve over the histogram
-
+hist(x, prob=T)
+lines(density(x)) 

@@ -1,0 +1,115 @@
+---
+title: "R Notebook"
+output: word_documnet
+---
+
+# Question 2.8
+
+1. Let X~N(5,4^2). Compute P(-7<X<7)
+```{r}
+prob_norm_x<-pnorm(7,5,4)-pnorm(-7,5,4);prob_norm_x
+```
+2.Generate a random sample of size n=100 from standard normal distribution. Calculate its mean, median and standar deviation(make use of the function set.seed).
+```{r}
+set.seed(seed=123)
+norm_x<-rnorm(100)
+mean_x<-mean(norm_x);mean_x
+median_x<-median(norm_x);median_x
+stdDev_x<-sd(norm_x);stdDev_x
+```
+
+3. Obtain upper 5% and lower 2.5% point of a standard normal distribution.
+Memorize it(1.645 and -1.96 thses are Z-scores).
+```{r}
+upp_x<-qnorm(.025);upp_x
+low_x<-qnorm(.05,lower.tail = F);low_x
+```
+
+4. Report the density function f(x) for x=20 where X~N(20,5^2)
+```{r}
+den_x<-dnorm(20,mean = 20,sd=5);den_x
+```
+# Data Storage
+#### Data Frame data[unit no,variable no]
+```{r}
+library(MASS)
+attach(Boston)
+class(Boston)
+View(Boston)
+str(Boston)
+head(Boston)
+names(Boston)
+attributes(Boston)
+Boston$crim #Extract crim
+summary(Boston)
+
+
+mydata<-edit(Boston)
+save(mydata,file = "mydata.RData")
+getwd()
+load("mydata.RData")
+View(mydata)
+a<-1:5
+b<-6:10
+c<-data.frame(a,b);c
+```
+
+# Question 3.1
+
+
+```{r}
+mathematics<-c(87,65,32,99,47,65,76,81,55,69,85,90,49,76,21)
+statistics<-c(92,87,55,84,90,95,47,79,83,84,65,60,81,99,50)
+Gender<-c('M','M','F','F','M','M','M','F','M','F','F','M','F','M','F')
+df<-data.frame(mathematics,statistics,Gender)
+View(df)
+str(df)
+attributes(df)
+```
+1.
+```{r}
+df[2]
+```
+2.
+```{r}
+df$mathematics[3]
+```
+3.
+```{r}
+df[3,]
+```
+4.
+```{r}
+df[df$statistics>75,]
+```
+5.
+```{r}
+df[df$mathematics>70 | df$statistics>80,]
+```
+
+6.
+```{r}
+df[df$Gender!='F',]
+```
+7.
+```{r}
+df[df$statistics>65,'mathematics']
+df$mathematics[df$statistics>65]
+```
+8.
+```{r}
+mean(df$mathematics)
+```
+9.
+```{r}
+summary(df)
+```
+10.
+```{r}
+
+```
+11.
+```{r}
+sd(df$statistics)
+```
+

@@ -112,4 +112,44 @@ summary(df)
 ```{r}
 sd(df$statistics)
 ```
+```{r}
+sapply(df,sd)
+```
 
+
+```{r}
+sapply(df,mean)
+#also another way
+# colMeans(df[,-3])
+```
+11.
+```{r}
+sd(df$statistics)
+```
+
+```{r}
+mean_maths<-mean(df[,1])
+sd_maths<-sd(df[,1])
+tr_maths<-(df[,1]-mean_maths)/sd_maths;tr_maths
+sta_maths<-scale(df$mathematics);sta_maths
+# mean is zero and variance 1 as its a standard normal 
+```
+
+```{r}
+head(df,3)
+```
+```{r}
+library(summarytools)
+freq(df$Gender)
+table(df[,3])
+```
+Make a scatterlpot of marks in mathematics and statistics.pass a fitted line through the scatter of the points.
+```{r}
+plot(df$mathematics,df$statistics,type = "p",
+     xlab = "mathematics",
+     ylab = "statistics",
+     main = "Scatterplot between Mathematics nad Statistics",
+     col=c(rep("blue",length(df$mathematics)),
+           rep("red",length(df$statistics))))
+lm(mathematics~statistics)
+```

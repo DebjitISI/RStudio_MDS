@@ -1,0 +1,94 @@
+---
+title: "Rstudio(Scatterplot)"
+author: "Debjit Khaskel(Roll_No:438)"
+date: "`r Sys.Date()`"
+output: word_document
+---
+
+```{r}
+mathematics<-c(87,65,32,99,47,65,76,81,55,69,85,90,49,76,21)
+statistics<-c(92,87,55,84,90,95,47,79,83,84,65,60,81,99,50)
+Gender<-c('M','M','F','F','M','M','M','F','M','F','F','M','F','M','F')
+df<-data.frame(mathematics,statistics,Gender)
+```
+
+```{r}
+plot(df$mathematics,df$statistics,type = "p",
+     xlab = "mathematics",
+     ylab = "statistics",
+     main = "Scatterplot between Mathematics and Statistics",
+     col="red")
+reg_df<-lm(statistics~mathematics,data = df)
+abline(reg_df)
+```
+# Question 3.2
+
+```{r}
+data<-matrix((rnorm(500)),nrow = 50,ncol = 10)
+colnames(data)<-paste("x",1:10,sep = "")
+rownames(data)<-1:50;data
+
+dim(data)
+```
+```{r}
+colm_sum<-colSums(data)
+colm_sum
+colm_mean<-colMeans(data)
+colm_mean
+colm_var<-apply(data,2,var)
+colm_var
+apply(data,2,prod)
+apply(data,2,median)
+```
+```{r}
+data_df<-as.data.frame(data)
+x1<-data[,1]
+x2<-data[,2]
+cor(x1,x2)
+```
+strength of linear association between x1 and x2
+```{r}
+plot(x1,x2,
+     xlab = "x1",
+     ylab = "x2",
+     main="Scatterplot between x1 and x2")
+```
+
+```{r}
+data.new<-10+2*data;data.new
+```
+```{r}
+b<-rnorm(50,mean = 10,sd=2)
+data.new1<-cbind(data.new,b);data.new1
+```
+```{r}
+c<-rnorm(11,mean = 10,sd=2)
+data.new2<-rbind(data.new1,c);data.new2
+```
+```{r}
+A<-data.new1[sample(1:nrow(data.new1),11,replace = F),];A
+```
+```{r}
+dim(A)
+det(A)
+solve(A)
+library(Matrix)
+rankMatrix(A)
+```
+```{r}
+eigen_results<-eigen(A)
+eigen_values<-eigen_results$values;eigen_values
+# as there sis some negative and some positive its indefinite
+eigen_vect<-eigen_results$vectors;eigen_vect
+```
+
+```{r}
+B<-matrix(rnorm(121,10,2),nrow = 11,ncol=11);B
+```
+```{r}
+A+B
+t(A)+t(B)
+A%*%B
+A/B
+```
+

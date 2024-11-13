@@ -89,3 +89,18 @@ flights %>%
 
 #18 Home Work
 
+# Group, summarize, filter
+flights_summary <- flights %>%
+  group_by(dest) %>% 
+  summarise(
+    avg_distance = mean(distance, na.rm = TRUE), # Calculate average distance
+    avg_delay = mean(arr_delay, na.rm = TRUE),  # Calculate average arrival delay
+    num_flights = n()                           # Count the number of flights
+  ) %>%
+  filter(
+    num_flights > 20,                           # Filter out destinations with ≤ 20 flights
+    avg_distance < 2500                         # Exclude Honolulu (far away destination)
+  )
+
+# View the resulting summary
+print(flights_summary)

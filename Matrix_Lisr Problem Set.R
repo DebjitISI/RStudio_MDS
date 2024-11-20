@@ -1,3 +1,4 @@
+rm(list=ls())
 data=rpois(50,2);data
 freq_dist=table(data);freq_dist
 cf_less=cumsum(freq_dist);cf_less
